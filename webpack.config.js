@@ -1,22 +1,18 @@
-const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //分离css
-const CleanWebpackPlugin =require('clean-webpack-plugin');
 const pages = require('./page.config.js');
 
 let HTMLPlugins = [], entries = {};
 
-const devMode = process.env.NODE_ENV !== 'production'
-
 
 pages.map(d => {
     entries[d.name] = `./src/${d.js}`;
-    HTMLPlugins.push(new HtmlWebpackPlugin({
-        template: `./src/${d.html}`,
-        filename: `${d.name}.html`,
-        inject: true,
-        chunks: [d.name],
+    HTMLPlugins.push(new HtmlWebpackPlugin({     //https://github.com/jantimon/html-webpack-plugin
+        template: `./src/${d.html}`, // 生产文件所依赖的文件模板 html、jade、ejs
+        filename: `${d.name}.html`, // 文件名
+        inject: true, //默认 script标签位于body底部
+        chunks: [d.name], //指定所引用的JS 不需要再加js后缀
+        hash: process.env.NODE_ENV === 'production' ? true : false,  // hash
         inlineSource: '.(js|css)',
         minify: {
             removeComments: true,//去注释
@@ -27,32 +23,13 @@ pages.map(d => {
 });
 
 module.exports = {
-    mode: 'development',
+
     entry: entries,
 
     output: {
         filename: '[name].js',
-        path: __dirname + '/car'
+        path: __dirname + '/dist'
     },
-
-    // devtool: 'inline-source-map',   //开发环境
-
-    // devServer: {
-    //     contentBase: './car',
-    //     port: 9000,
-    //     host: '127.0.0.1',
-    //     hot: true,
-    //     open: true,
-    //     compress: true,
-    //     openPage: 'A/A.html',
-    //     proxy: {
-    //         "/car": {
-    //           target: "http://172.30.40.65:8088",
-    //         //   pathRewrite: {"^/api" : ""},
-    //           changeOrigin: true
-    //         }
-    //     }
-    // },
 
     module: {
         rules: [
@@ -76,8 +53,8 @@ module.exports = {
             {
                 test: /\.(le|c)ss$/,
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'style-loader',
+                    process.env.NODE_ENV === 'production' ?  MiniCssExtractPlugin.loader : 'style-loader',
+                    // 'style-loader',
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -90,23 +67,6 @@ module.exports = {
         ]
     },
     plugins: [ 
-        //build前清理car文件目录
-        new CleanWebpackPlugin(['car']), 
-        //html模板
         ...HTMLPlugins,
-        //提取CSS
-        new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : '[name].[hash].css',
-            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-        }),
-        // 热加载
-        new webpack.HotModuleReplacementPlugin(),
-
-        // new ExtractTextPlugin({
-        //         filename: 'test.css',
-        // }),
-        // new vConsolePlugin({
-        //         enable: process.env.NODE_ENV !== 'production'
-        //     })
     ],
 };

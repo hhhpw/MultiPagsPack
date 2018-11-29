@@ -4,11 +4,11 @@ const config = require('./config');
 
 
 
-process.env.NODE_ENV = 'devBuild';
+process.env.NODE_ENV = 'qa';
 
 console.log(`build for ${process.env.NODE_ENV}`);
 
-const webpackConfig = merge(baseWebpackConfig, config.devBuild);
+const webpackConfig = merge(baseWebpackConfig, config.qa);
 
 
 module.exports = webpackConfig;

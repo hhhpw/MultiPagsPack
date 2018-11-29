@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config build/prod.webpack.config.js",
+    "qa": "webpack --config build/qa.webpack.config.js",
+    "devBuild": "webpack --config build/devBuild.webpack.config.js",
     "start": "webpack-dev-server --open",
     "dev": "webpack-dev-server --config build/dev.webpack.config.js"
   },
@@ -29,6 +31,8 @@
     "mini-css-extract-plugin": "^0.4.5",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "vconsole-webpack-plugin": "^1.4.2",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",

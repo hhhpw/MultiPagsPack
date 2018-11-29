@@ -5,3 +5,4 @@ import $ from 'jquery';
 $('.ttt').on('click', function() {
     alert('fff');
 });
+

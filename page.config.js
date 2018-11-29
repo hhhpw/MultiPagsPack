@@ -1,12 +1,13 @@
 module.exports = [
     {
-        name: 'B/B',
+        name: 'car/B/B',
         html: 'B/B.html',
         js: 'B/B.js',
     },
     {
-        name: 'A/A',
-        html: 'A/A.html',
-        js: 'A/A.js',
+        name: 'car/A/A',
+        html: 'A/A.html', // html入口
+        js: 'A/A.js', //entry入口
     },
 ]
+
