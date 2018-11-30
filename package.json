@@ -29,6 +29,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.5",
+    "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
