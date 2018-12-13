@@ -8,13 +8,13 @@ const vConsolePlugin = require('vconsole-webpack-plugin');
 
 
 const commonConfig = (env) => ({
-    mode: env ===  'production' ? env : null,
+    mode: env ===  'production' ? env : 'none',
     devtool: 'source-map',
     plugins: [
-        //环境变量
-        new webpack.DefinePlugin({
-            'process.env': env,
-        }),
+        // //环境变量
+        // new webpack.DefinePlugin({
+        //     'process.env': env,
+        // }),
         // 压缩JS
         new UglifyJsPlugin({
             sourceMap: true,
@@ -26,7 +26,7 @@ const commonConfig = (env) => ({
             parallel: true,  //并行
         }),
         //build前清理car文件目录
-        new CleanWebpackPlugin(['car']), 
+        new CleanWebpackPlugin(['dist']), 
 
         //提取CSS
         new MiniCssExtractPlugin({
@@ -53,9 +53,12 @@ const config = {
             compress: true,
             openPage: 'car/A/A.html',
             proxy: {
-                "/car": {
-                  target: "http://172.30.40.65:8088", // IP
-                  changeOrigin: true
+                "/api": {
+                    // target: "http://172.30.37.84:8821",
+                    changeOrigin: true,
+                    pathRewrite: {
+                        '^/api': ''
+                    }
                 }
             }
         },

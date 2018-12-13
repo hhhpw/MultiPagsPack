@@ -1,14 +1,25 @@
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const baseWebpackConfig = require('../webpack.config');
 const config = require('./config');
 
 
 
-process.env.NODE_ENV = 'qa';
+let env = {
+    NODE_ENV: '"qa"',
+    API_ROOT: '"domain name"',
+}
 
+const webpackConfig = merge(baseWebpackConfig, config.qa,
+    {
+        plugins: [
+            new webpack.DefinePlugin({
+                'process.env': env,
+            }),
+        ]
+    }
+);
 console.log(`build for ${process.env.NODE_ENV}`);
-
-const webpackConfig = merge(baseWebpackConfig, config.qa);
 
 
 module.exports = webpackConfig;

@@ -4,6 +4,7 @@ import $ from 'jquery';
 // import 
 import '../../mock';
 
+import '../lib/api';
 // $.ajax({
 //     method: 'GET',
 //     url: '/mock/test',

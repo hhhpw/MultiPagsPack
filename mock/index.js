@@ -6,7 +6,7 @@ Mock.mock('/mock/test', 'get', function(opts) {
     return opts.type;
 })
 
-Mock.mock('/mock/A', 'get', {
+Mock.mock('/api/mock/A', 'get', {
     'counter|0-9': 1,
     'name': 'leo',
     'desc': {

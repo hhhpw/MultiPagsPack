@@ -5,6 +5,8 @@ const config = require('./config');
 
 
 process.env.NODE_ENV = 'devBuild';
+process.env.API_ROOT = 'domain name';
+
 
 console.log(`build for ${process.env.NODE_ENV}`);
 
