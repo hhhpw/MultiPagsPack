@@ -1,10 +1,12 @@
 // const a = [1,2,3].map(d => d + 1);
 // console.log(a);
 import $ from 'jquery';
-// import 
+// import
 import '../../mock';
 
-import '../lib/api';
+// import '../lib/api'
+var a = 10;
+console.log('fff', a);
 // $.ajax({
 //     method: 'GET',
 //     url: '/mock/test',
@@ -27,7 +29,7 @@ import '../lib/api';
 //     method: 'POST',
 //     url: '/mock/B',
 //     data: JSON.stringify(params),
-//     contentType:"application/json",      
+//     contentType:"application/json",
 //     dataType:"json",
 //     success: function(res) {
 //         console.log('res', res);
@@ -43,10 +45,10 @@ import '../lib/api';
 // })
 
 $.ajax({
-    method: 'GET',
-    url: '/mock/D',
-    success: function(res) {
-        console.log('res', res); // url
-        $('body').append('<img src='+ res +' />');
-    }
+	method: 'GET',
+	url: '/mock/D',
+	success: function (res) {
+		console.log('res', res); // url
+		$('body').append('<img src=' + res + ' />');
+	}
 })

@@ -1,4 +1,4 @@
-export const toQueryString = (obj)  => {
+export const toQueryString = (obj) => {
 	var ret = [];
 	for (var key in obj) {
 		key = encodeURIComponent(key);
@@ -13,5 +13,5 @@ export const toQueryString = (obj)  => {
 		} else { //字符串
 			ret.push(toQueryPair(key, values));
 		}
-    }
+	}
 }
