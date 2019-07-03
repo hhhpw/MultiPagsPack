@@ -1,6 +1,7 @@
-"use strict";
+'use strict';
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //分离css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //分离css
 const pages = require('./page.config.js');
 const path = require('path');
 
@@ -20,13 +21,10 @@ pages.map(d => {
 			removeComments: true,//去注释
 			collapseWhitespace: true,//压缩空格
 			removeAttributeQuotes: true //去除属性引用
-		},
+		}
 	}));
 });
 
-function resolve (dir) {
-	return path.join(__dirname, '..', dir);
-}
 
 
 module.exports = {
@@ -42,20 +40,25 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: "babel-loader",
-				include: [path.join(__dirname, "./src")]
+				use: [
+					{
+						loader: 'eslint-loader',
+						options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+							formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+						}
+					}
+				],
+				enforce: 'pre', // 编译前检查
+				exclude: /node_modules/, // 不检测的文件
+				include: [path.resolve(__dirname, 'src')]// 指定检查的目录
+
 			},
-			// {
-			// 	test: /\.js$/,
-			// 	loader: 'eslint-loader',
-			// 	enforce: 'pre',
-			// 	// include: [resolve('src')],
-			// 	exclude: /node_modules/, // 不检测的文件
-			// 	options: {
-			// 		formatter: require('eslint-friendly-formatter')
-			// 	}
-			// },
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader',
+				include: [path.join(__dirname, './src')]
+			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
@@ -72,20 +75,19 @@ module.exports = {
 				test: /\.(le|c)ss$/,
 				use: [
 					process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-					// 'style-loader',
 					'css-loader',
 					{
 						loader: 'postcss-loader',
 						options: {
-							plugins: [require("autoprefixer")("last 10 versions")]
-						},
+							plugins: [require('autoprefixer')('last 10 versions')]
+						}
 					},
 					'less-loader'
 				]
-			},
+			}
 		]
 	},
 	plugins: [
-		...HTMLPlugins,
-	],
+		...HTMLPlugins
+	]
 };

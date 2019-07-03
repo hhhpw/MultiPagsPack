@@ -4,9 +4,13 @@ import $ from 'jquery';
 // import
 import '../../mock';
 
+
 // import '../lib/api'
-var a = 10;
+let a = 10;
 console.log('fff', a);
+
+let v = Symbol('v');
+console.log(v.toString());
 // $.ajax({
 //     method: 'GET',
 //     url: '/mock/test',
@@ -51,4 +55,4 @@ $.ajax({
 		console.log('res', res); // url
 		$('body').append('<img src=' + res + ' />');
 	}
-})
+});

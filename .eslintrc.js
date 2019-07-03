@@ -6,7 +6,6 @@ module.exports = {
 	"root": true,
 	"plugins": [
 		"html",
-		"vue"
 	],
 	// 脚本运行的环境，每种环境都有一组预定义全局变量
 	"env": {
@@ -22,10 +21,7 @@ module.exports = {
 		"react": false,
 	},
 	// 解析器
-	// "parser": "babel-eslint",
-	"parserOptions": {
-		"parser": "babel-eslint"
-	},
+	"parser": "babel-eslint",
 	"rules": {
 		//官方文档 http://eslint.org/docs/rules/
 		//中文文档 http://eslint.cn/docs/user-guide/configuring
