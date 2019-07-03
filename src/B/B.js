@@ -1,3 +1,3 @@
-import  './B.css';
-import './B.less';
-alert('B');
+import "./B.css";
+import "./B.less";
+alert("B");

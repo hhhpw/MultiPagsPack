@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //分离css
-const pages = require('./page.config.js');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //分离css
+const pages = require("./page.config.js");
+const path = require("path");
 
 let HTMLPlugins = [], entries = {};
 
@@ -15,8 +15,8 @@ pages.map(d => {
 		filename: `${d.name}.html`, // 文件名
 		inject: true, //默认 script标签位于body底部
 		chunks: [d.name], //指定所引用的JS 不需要再加js后缀
-		hash: process.env.NODE_ENV === 'production' ? true : false,  // hash
-		inlineSource: '.(js|css)',
+		hash: process.env.NODE_ENV === "production" ? true : false,  // hash
+		inlineSource: ".(js|css)",
 		minify: {
 			removeComments: true,//去注释
 			collapseWhitespace: true,//压缩空格
@@ -32,8 +32,8 @@ module.exports = {
 	entry: entries,
 
 	output: {
-		filename: '[name].js',
-		path: __dirname + '/dist'
+		filename: "[name].js",
+		path: __dirname + "/dist"
 	},
 
 	module: {
@@ -42,47 +42,47 @@ module.exports = {
 				test: /\.js$/,
 				use: [
 					{
-						loader: 'eslint-loader',
+						loader: "eslint-loader",
 						options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
-							formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+							formatter: require("eslint-friendly-formatter") // 指定错误报告的格式规范
 						}
 					}
 				],
-				enforce: 'pre', // 编译前检查
+				enforce: "pre", // 编译前检查
 				exclude: /node_modules/, // 不检测的文件
-				include: [path.resolve(__dirname, 'src')]// 指定检查的目录
+				include: [path.resolve(__dirname, "src")]// 指定检查的目录
 
 			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader',
-				include: [path.join(__dirname, './src')]
+				loader: "babel-loader",
+				include: [path.join(__dirname, "./src")]
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
-					'flie-loader'
+					"flie-loader"
 				]
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				use: [
-					'file-loader'
+					"file-loader"
 				]
 			},
 			{
 				test: /\.(le|c)ss$/,
 				use: [
-					process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-					'css-loader',
+					process.env.NODE_ENV === "production" ? MiniCssExtractPlugin.loader : "style-loader",
+					"css-loader",
 					{
-						loader: 'postcss-loader',
+						loader: "postcss-loader",
 						options: {
-							plugins: [require('autoprefixer')('last 10 versions')]
+							plugins: [require("autoprefixer")("last 10 versions")]
 						}
 					},
-					'less-loader'
+					"less-loader"
 				]
 			}
 		]

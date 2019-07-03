@@ -1,15 +1,15 @@
 // const a = [1,2,3].map(d => d + 1);
 // console.log(a);
-import $ from 'jquery';
+import $ from "jquery";
 // import
-import '../../mock';
+import "../../mock";
 
 
 // import '../lib/api'
 let a = 10;
-console.log('fff', a);
+console.log("fff", a);
 
-let v = Symbol('v');
+let v = Symbol("v");
 console.log(v.toString());
 // $.ajax({
 //     method: 'GET',
@@ -49,10 +49,10 @@ console.log(v.toString());
 // })
 
 $.ajax({
-	method: 'GET',
-	url: '/mock/D',
+	method: "GET",
+	url: "/mock/D",
 	success: function (res) {
-		console.log('res', res); // url
-		$('body').append('<img src=' + res + ' />');
+		console.log("res", res); // url
+		$("body").append("<img src=" + res + " />");
 	}
 });

@@ -29,7 +29,7 @@ module.exports = {
 		//参数：0：off 关闭规则，
 		//1:warn 开启规则，启用警告级别，不会导致程序退出，
 		//2:error 开启规则，启用错误级别，当被触发的时候，程序会退出
-		"quotes": [1, "single"], //建议使用单引号
+		"quotes": [1, "double"], //建议使用双引号
 		// "no-inner-declarations": [0, "both"],   //不建议在{}代码块内部声明变量或函数
 		"no-extra-boolean-cast": 1, //多余的感叹号转布尔型
 		"no-extra-semi": 1, //多余的分号
